@@ -3,16 +3,16 @@ import { ListItem } from "../List";
 import { Row, Col } from "../Grid";
 import "./style.css";
 
-function Book({ name, population, carbon }) {
+function Book({ NAME, POPULATION, CARBON }) {
   return (
     <ListItem>
       <Row className="flex-wrap-reverse">
         <Col size="md-8">
-          <h3 className="font-italic">{name}</h3>
-          {name && <h5 className="font-italic">{name}</h5>}
-          <p>{carbon}</p>
-          <p>{population}</p>
-          <p>{name}</p>
+          <h3 className="font-italic">{NAME}</h3>
+          {NAME && <h5 className="font-italic">{NAME}</h5>}
+          <p>{CARBON}</p>
+          <p>{POPULATION}</p>
+          <p>{NAME}</p>
         </Col>
         {/* <Col size="md-4">
           <div className="btn-container">
@@ -33,9 +33,9 @@ function Book({ name, population, carbon }) {
           <img className="img-thumbnail img-fluid w-100" src={image} alt={title} />
         </Col> */}
         <Col size="12 sm-8 md-10">
-          <p>{carbon}</p>
-          <p>{population}</p>
-          <p>{name}</p>
+          <p>{CARBON}</p>
+          <p>{POPULATION}</p>
+          <p>{NAME}</p>
         </Col>
       </Row>
     </ListItem>

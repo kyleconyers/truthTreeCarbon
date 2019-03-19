@@ -58,9 +58,14 @@ class Home extends Component {
         if (obj[i].NAME == needle){
            // we found it
           // obj[i].name is the matched result
-          console.log("inif", needle)
+          console.log("inif", obj[i])
+          
+          this.setState({
+            books: obj[i]
+          })
         }
       }
+
 
   };
 
@@ -114,9 +119,9 @@ class Home extends Component {
                   {this.state.books.map(book => (
                     <Book
                       key={book.FID}
-                      name={book.name}
-                      population={book.population}
-                      carbon={book.carbon}
+                      NAME={book.NAME}
+                      POPULATION={book.POPULATION}
+                      CARON={book.CARBON}
 
 
                       // key={book.id}
