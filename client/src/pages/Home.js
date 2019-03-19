@@ -121,7 +121,8 @@ class Home extends Component {
                       key={book.FID}
                       NAME={book.NAME}
                       POPULATION={book.POPULATION}
-                      CARON={book.CARBON}
+                      CARBON={book.CARBON}
+                      UNITTYPE={book.UNITTYPE}
 
 
                       // key={book.id}
