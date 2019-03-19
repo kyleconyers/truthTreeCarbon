@@ -10,6 +10,9 @@ function Book({ name, population, carbon }) {
         <Col size="md-8">
           <h3 className="font-italic">{name}</h3>
           {name && <h5 className="font-italic">{name}</h5>}
+          <p>{carbon}</p>
+          <p>{population}</p>
+          <p>{name}</p>
         </Col>
         {/* <Col size="md-4">
           <div className="btn-container">

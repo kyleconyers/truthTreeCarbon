@@ -12,7 +12,7 @@ class Home extends Component {
   state = {
     books: [],
     q: "",
-    message: "Search For A Book To Begin!"
+    message: "Search For A Location!"
   };
 
   handleInputChange = event => {
@@ -29,20 +29,39 @@ class Home extends Component {
         this.setState({
           books: res.data
           
+          
         })
         )
-        // console.log(res.data)
+        // console.log(this.data)
 
      
       .catch(() =>
         this.setState({
           books: [],
-          message: "No New Books Found, Try a Different Query"
+          message: "No New Location Found, Try a Different Query"
         })
 
       );
       console.log(this.state.books);
       console.log("comment",API)
+      console.log(this.state.q)
+      console.log()
+      var obj = this.state.books;
+      
+      // the code you're looking for
+      var needle = this.state.q;
+      
+      // iterate over each element in the array
+      for (var i = 0; i < obj.length; i++){
+        // console.log("infor", obj)
+        // look for the entry with a matching `code` value
+        if (obj[i].NAME == needle){
+           // we found it
+          // obj[i].name is the matched result
+          console.log("inif", needle)
+        }
+      }
+
   };
 
   handleFormSubmit = event => {
@@ -99,6 +118,7 @@ class Home extends Component {
                       population={book.population}
                       carbon={book.carbon}
 
+
                       // key={book.id}
                       // title={book.volumeInfo.title}
                       // subtitle={book.volumeInfo.subtitle}
@@ -106,14 +126,14 @@ class Home extends Component {
                       // authors={book.volumeInfo.authors.join(", ")}
                       // description={book.volumeInfo.description}
                       // image={book.volumeInfo.imageLinks.thumbnail}
-                      // Button={() => (
-                      //   <button
-                      //     onClick={() => this.handleBookSave(book.id)}
-                      //     className="btn btn-primary ml-2"
-                      //   >
-                      //     Save
-                      //   </button>
-                      // )}
+                      Button={() => (
+                        <button
+                          onClick={() => this.handleBookSave(book.id)}
+                          className="btn btn-primary ml-2"
+                        >
+                          Save
+                        </button>
+                      )}
                     />
                   ))}
                 </List>

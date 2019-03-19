@@ -4,7 +4,8 @@ export default {
   // Gets books from the Google API
   getBooks: function(q) {
     console.log("inside getbbooks api");
-    return axios.get("csvjson.json");
+    console.log(axios.get("csvjsontest.json"))
+    return axios.get("csvjsontest.json");
     // , { params: { q: "title:" + q } }
   },
   // Gets all saved books
