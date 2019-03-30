@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { List } from "../components/List";
+// import {DATA} from "cvsjsontest.json";
 
 class Home extends Component {
   state = {
@@ -17,58 +18,86 @@ class Home extends Component {
 
   handleInputChange = event => {
     const { name, value } = event.target;
+    console.log(event.target)
     this.setState({
       [name]: value
     });
-    // console.log("handleinputchange", value);
   };
-
   getBooks = () => {
+ 
     API.getBooks(this.state.q)
       .then(res =>
         this.setState({
-          books: res.data
-          
-          
+          books: res.data    
         })
         )
-        // console.log(this.data)
-
-     
       .catch(() =>
         this.setState({
           books: [],
           message: "No New Location Found, Try a Different Query"
         })
-
       );
-      console.log(this.state.books);
-      console.log("comment",API)
-      console.log(this.state.q)
-      console.log()
-      var obj = this.state.books;
       
-      // the code you're looking for
-      var needle = this.state.q;
-      
-      // iterate over each element in the array
-      for (var i = 0; i < obj.length; i++){
-        // console.log("infor", obj)
-        // look for the entry with a matching `code` value
-        if (obj[i].NAME == needle){
-           // we found it
-          // obj[i].name is the matched result
-          console.log("inif", obj[i])
-          
-          this.setState({
-            books: obj[i]
-          })
+        var list = this.state.books;
+        var searched = this.state.q;
+        
+        for (var i = 0; i < list.length; i++){
+              if (list[i].NAME === searched){
+                  var searchedPopulation = list[i].POPULATION;
+                  let top = searchedPopulation*1.3;
+                  let bottom = searchedPopulation*0.9; 
+                  let results = [];
+                                     
+
+                 
+                  console.log(bottom, searchedPopulation, top)
+                  for (var i = 0; i < list.length; i++){
+                      if (list[i].POPULATION <=  
+                        top && list[i].POPULATION >= bottom){
+                        results.push(list[i]);
+                        
+                        this.setState({
+                        books: results    
+                        })
+                        
+                        console.log(results);   
+                        console.log(this.state.books)   
+                                    
+                      }
+                      // console.log(results);
+                      
+                      
+                  }
+                  console.log(results);
+                  
+                  this.setState({
+                    books: results,
+                  }); 
+                  console.log(this.state.books)
+              }
+              // this.setState({
+              //   books: results,
+              // }); 
+              console.log(this.state.books)
+              // console.log(results)
         }
-      }
+        console.log(this.state.books)
 
-
+        // function updateStateResults(results){
+        //   this.setState({
+        //     books: results,
+        //   }); 
+        // } 
+        // updateStateResults();
+        // console.log(this.state.books)
+      
+      
+      //  console.log(results)
   };
 
+  // this.setState({
+  //   books: results,
+  // }); 
   handleFormSubmit = event => {
     event.preventDefault();
     this.getBooks();
@@ -114,6 +143,7 @@ class Home extends Component {
         <Row>
           <Col size="md-12">
             <Card title="Results">
+            
               {this.state.books.length ? (
                 <List>
                   {this.state.books.map(book => (
