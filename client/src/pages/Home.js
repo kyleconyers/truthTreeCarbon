@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Jumbotron from "../components/Jumbotron";
+// import Jumbotron from "../components/Jumbotron";
 import Card from "../components/Card";
 import Form from "../components/Form";
 import Book from "../components/Book";
@@ -8,8 +8,40 @@ import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { List } from "../components/List";
 // import {DATA} from "cvsjsontest.json";
+function filterBooks(list, component){
+  var searched = component.state.q;
+  
 
+  for (var i = 0; i < list.length; i++){
+    if (list[i].NAME === searched){
+      var searchedPopulation = list[i].POPULATION;
+      let top = searchedPopulation*1.15;
+      let bottom = searchedPopulation*.95; 
+      let results = [];  
+      console.log(top)                                     
+      for (var i = 0; i < list.length; i++){
+        if (list[i].POPULATION <=  
+            top && list[i].POPULATION >= bottom){
+          results.push(list[i]);               
+        }                
+      }
+      for (var i = 0; i < results.length; i++){
+        if (list[i].NAME === ""){
+          // results.NAME_0.push(results.NAME)
+          results.pop(results[i]);
+        }
+      }
+      component.setState({
+        books: results    
+      })
+    }
+  }
+}
 class Home extends Component {
+  // constructor(props){
+  //   super(props)
+  //   this.getBooks = this.getBooks.bind(this)
+  // }
   state = {
     books: [],
     q: "",
@@ -18,81 +50,29 @@ class Home extends Component {
 
   handleInputChange = event => {
     const { name, value } = event.target;
-    console.log(event.target)
     this.setState({
       [name]: value
+
+
+
     });
   };
   getBooks = () => {
- 
-    API.getBooks(this.state.q)
-      .then(res =>
-        this.setState({
-          books: res.data    
-        })
-        )
+    // var list;
+    API.getBooks(this.state.q, this.state.bottomValue, this.state.TopValue)
+      .then(res => {
+          filterBooks(res.data, this)
+        }
+      )
       .catch(() =>
         this.setState({
           books: [],
           message: "No New Location Found, Try a Different Query"
         })
       );
-      
-        var list = this.state.books;
-        var searched = this.state.q;
+
         
-        for (var i = 0; i < list.length; i++){
-              if (list[i].NAME === searched){
-                  var searchedPopulation = list[i].POPULATION;
-                  let top = searchedPopulation*1.3;
-                  let bottom = searchedPopulation*0.9; 
-                  let results = [];
-                                     
 
-                 
-                  console.log(bottom, searchedPopulation, top)
-                  for (var i = 0; i < list.length; i++){
-                      if (list[i].POPULATION <=  
-                        top && list[i].POPULATION >= bottom){
-                        results.push(list[i]);
-                        
-                        this.setState({
-                        books: results    
-                        })
-                        
-                        console.log(results);   
-                        console.log(this.state.books)   
-                                    
-                      }
-                      // console.log(results);
-                      
-                      
-                  }
-                  console.log(results);
-                  
-                  this.setState({
-                    books: results,
-                  }); 
-                  console.log(this.state.books)
-              }
-              // this.setState({
-              //   books: results,
-              // }); 
-              console.log(this.state.books)
-              // console.log(results)
-        }
-        console.log(this.state.books)
-
-        // function updateStateResults(results){
-        //   this.setState({
-        //     books: results,
-        //   }); 
-        // } 
-        // updateStateResults();
-        // console.log(this.state.books)
-      
-      
-      //  console.log(results)
   };
 
   // this.setState({
@@ -103,19 +83,7 @@ class Home extends Component {
     this.getBooks();
   };
 
-  // handleBookSave = id => {
-  //   const book = this.state.books.find(book => book.id === id);
 
-  //   API.saveBook({
-  //     googleId: book.id,
-  //     title: book.volumeInfo.title,
-  //     subtitle: book.volumeInfo.subtitle,
-  //     link: book.volumeInfo.infoLink,
-  //     authors: book.volumeInfo.authors,
-  //     description: book.volumeInfo.description,
-  //     image: book.volumeInfo.imageLinks.thumbnail
-  //   }).then(() => this.getBooks());
-  // };
 
   render() {
     return (
@@ -146,13 +114,19 @@ class Home extends Component {
             
               {this.state.books.length ? (
                 <List>
+                  {console.log(this.state.books)}
                   {this.state.books.map(book => (
                     <Book
+
                       key={book.FID}
                       NAME={book.NAME}
+                      NAME_0={book.NAME_0}
+                      NAME_1={book.NAME_1}
+                      NAME_2={book.NAME_2}
                       POPULATION={book.POPULATION}
                       CARBON={book.CARBON}
                       UNITTYPE={book.UNITTYPE}
+                      
 
 
                       // key={book.id}

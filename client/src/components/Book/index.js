@@ -3,16 +3,22 @@ import { ListItem } from "../List";
 import { Row, Col } from "../Grid";
 import "./style.css";
 
-function Book({ NAME, POPULATION, CARBON, UNITTYPE }) {
+function Book({ NAME, POPULATION, CARBON, UNITTYPE, NAME_0, NAME_1, NAME_2}) {
   return (
     <ListItem>
       <Row className="flex-wrap-reverse">
         <Col size="md-8">
-          <h3 className="font-italic">{NAME}</h3>
+          
+          <p className="font-italic">Organization Type: {UNITTYPE}</p>
+          <h3>Name if Nation: {NAME}</h3>
           {/* {NAME && <h5 className="font-italic">{NAME}</h5>} */}
+          <h5>Nation if state or county:  {NAME_0}</h5>
+          <h5>State:  {NAME_1}</h5>
+          <h5>County:  {NAME_2}</h5>
           <p>Carbon: {CARBON}</p>
           <p>Population: {POPULATION}</p>
-          <p>Organization Type: {UNITTYPE}</p>
+          
+          
           {/* <p>{NAME}</p> */}
         </Col>
         {/* <Col size="md-4">

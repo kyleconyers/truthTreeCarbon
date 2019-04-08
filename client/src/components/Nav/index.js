@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import "./style.css";
 
 class Nav extends Component {
@@ -33,10 +33,10 @@ class Nav extends Component {
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light mb-2">
-        <Link className="navbar-brand" to="/">
-          Google 
-        </Link>
-        <button
+        {/* <Link className="navbar-brand" to="/">
+          Enter a name of a localtion, find other locations withing 15% larger than it's population, and 5% less its population
+        </Link> */}
+        {/* <button
           onClick={this.toggleNav}
           className="navbar-toggler"
           data-toggle="collapse"
@@ -46,10 +46,10 @@ class Nav extends Component {
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon" />
-        </button>
+        </button> */}
         <div className={`${this.state.open ? "" : "collapse "}navbar-collapse`} id="navbarNav">
           <ul className="navbar-nav">
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link
                 onClick={this.toggleNav}
                 className={window.location.pathname === "/" ? "nav-link active" : "nav-link"}
@@ -57,8 +57,8 @@ class Nav extends Component {
               >
                 Search
               </Link>
-            </li>
-            <li className="nav-item">
+            </li> */}
+            {/* <li className="nav-item">
               <Link
                 onClick={this.toggleNav}
                 className={window.location.pathname === "/saved" ? "nav-link active" : "nav-link"}
@@ -66,7 +66,7 @@ class Nav extends Component {
               >
                 Saved
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </nav>
