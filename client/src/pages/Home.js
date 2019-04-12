@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 // import Jumbotron from "../components/Jumbotron";
 import Card from "../components/Card";
+import Cartograph from "../components/Cartograph";
+import BasicExample from "../components/Cartograph";
 import Form from "../components/Form";
 import Book from "../components/Book";
 import Footer from "../components/Footer";
@@ -98,6 +100,17 @@ class Home extends Component {
             </Jumbotron>
           </Col> */}
           <Col size="md-12">
+          <Cartograph title="Map" icon="far">
+            <div id="container">map div</div>
+            <BasicExample />
+            <div id="app"></div>
+              {/* <Form
+                handleInputChange={this.handleInputChange}
+                handleFormSubmit={this.handleFormSubmit}
+                q={this.state.q}
+              /> */}
+              
+          </Cartograph>
             <Card title="Location Search" icon="far">
               <Form
                 handleInputChange={this.handleInputChange}
