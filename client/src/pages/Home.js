@@ -100,17 +100,19 @@ class Home extends Component {
             </Jumbotron>
           </Col> */}
           <Col size="md-12">
-          <Cartograph title="Map" icon="far">
+          {/* <Cartograph title="Map" icon="far">
             <div id="container">map div</div>
             <BasicExample />
             <div id="app"></div>
+
+          </Cartograph>     */}
+
               {/* <Form
                 handleInputChange={this.handleInputChange}
                 handleFormSubmit={this.handleFormSubmit}
                 q={this.state.q}
               /> */}
-              
-          </Cartograph>
+
             <Card title="Location Search" icon="far">
               <Form
                 handleInputChange={this.handleInputChange}
